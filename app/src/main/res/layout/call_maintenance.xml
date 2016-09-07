@@ -10,8 +10,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="There was an issue with the payment, would you like to try again?"
-        android:id="@+id/textView3"
+        android:text="Please call Attendant."
+        android:id="@+id/maintenance_text"
         android:layout_centerInParent="true" />
 
     <LinearLayout
@@ -20,20 +20,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
-    <Button
-        android:id="@+id/incomplete_cancel"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:background="@drawable/buttonshape"
-        android:alpha="0.8"
-        android:text="Cancel" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/password_text" />
 
-    <Button
-        android:id="@+id/incomplete_retry"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:background="@drawable/buttonshape"
-        android:alpha="0.8"
-        android:text="Retry" />
-</LinearLayout>
+        <Button
+            android:id="@+id/maintenance_ok"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:background="@drawable/buttonshape"
+            android:alpha="0.8"
+            android:text="Ok" />
+    </LinearLayout>
+
 </RelativeLayout>

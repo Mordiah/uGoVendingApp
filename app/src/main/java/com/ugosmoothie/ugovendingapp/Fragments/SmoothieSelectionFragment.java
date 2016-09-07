@@ -77,21 +77,27 @@ public class SmoothieSelectionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 CurrentSelection.getInstance().setCurrentSmoothie(getGreen_machine());
-                ((PurchaseSmoothie) getActivity()).GetUGoViewPager().setCurrentItem(1);
+                CurrentSelection.getInstance().setCurrentLiquid(0);
+                CurrentSelection.getInstance().setCurrentSupplement(0);
+                ((PurchaseSmoothie) getActivity()).GetUGoViewPager().setCurrentItem(3);
             }
         });
         smoothie_t.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 CurrentSelection.getInstance().setCurrentSmoothie(getTropical_paradise());
-                ((PurchaseSmoothie) getActivity()).GetUGoViewPager().setCurrentItem(1);
+                CurrentSelection.getInstance().setCurrentLiquid(0);
+                CurrentSelection.getInstance().setCurrentSupplement(0);
+                ((PurchaseSmoothie) getActivity()).GetUGoViewPager().setCurrentItem(3);
             }
         });
         smoothie_b.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 CurrentSelection.getInstance().setCurrentSmoothie(getBerry_licious());
-                ((PurchaseSmoothie) getActivity()).GetUGoViewPager().setCurrentItem(1);
+                CurrentSelection.getInstance().setCurrentLiquid(0);
+                CurrentSelection.getInstance().setCurrentSupplement(0);
+                ((PurchaseSmoothie) getActivity()).GetUGoViewPager().setCurrentItem(3);
             }
         });
 

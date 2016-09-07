@@ -18,7 +18,9 @@ import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +36,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class PurchaseSmoothie extends AppCompatActivity {
-
+    private int totalSmoothiesMade = 0;
     private uGoViewPager m_uGoViewPage;
     private AsyncServer asyncServer;
     private Locale myLocale;
@@ -257,6 +259,35 @@ public class PurchaseSmoothie extends AppCompatActivity {
         m_uGoViewPage.setAdapter(null);
         m_uGoViewPage.setAdapter(mSmoothiePagerAdapter);
         m_uGoViewPage.setCurrentItem(0);
+
+
+        if (totalSmoothiesMade > 20) {
+            View callMaintenanceView = findViewById(R.id.callMaintenance);
+            callMaintenanceView.setVisibility(View.VISIBLE);
+
+            final Button maintenance_ok_button = (Button) findViewById((R.id.maintenance_ok));
+
+            maintenance_ok_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditText editText = (EditText)findViewById(R.id.password_text);
+                    TextView maintenanceText = (TextView)findViewById(R.id.maintenance_text);
+                    maintenanceText.setText(editText.getText() + " equals:" + editText.getText().toString().equals("1111"));
+                    if (editText.getText().toString().equals("1111")) {
+                        View callMaintenanceView = findViewById(R.id.callMaintenance);
+                        callMaintenanceView.setVisibility(View.INVISIBLE);
+                        // Check if no view has focus:
+                        View view = PurchaseSmoothie.this.getCurrentFocus();
+                        if (view != null) {
+                            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                        }
+                        totalSmoothiesMade = 0;
+                    }
+                }
+            });
+
+        }
     }
 
     public uGoViewPager GetUGoViewPager() {
@@ -337,47 +368,37 @@ public class PurchaseSmoothie extends AppCompatActivity {
         );
         purchase.save();
         // send the purchase to any listening clients
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-// Add the buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked OK button
-                // SEND ARDUINO START
+        GetUGoViewPager().setCurrentItem(4);
+        arduino.SendAutoCycleMessage();
 
-                GetUGoViewPager().setCurrentItem(4);
-                arduino.SendAutoCycleMessage();
-            }
-        });
-        builder.setMessage("Make sure the lid is removed and put the cup in the holder.\nClick OK when ready");
-// Create the AlertDialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        totalSmoothiesMade++;
+
     }
 
     //Saving the final order into Sugar ORM and sending message to client App
     private BroadcastReceiver paymentCompleteReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Purchase purchase = new Purchase(
-                    (long)CurrentSelection.getInstance().getCurrentSmoothie(),
-                    (long)CurrentSelection.getInstance().getCurrentLiquid(),
-                    (long)CurrentSelection.getInstance().getCurrentSupplement(),
-                    false,
-                    CurrentSelection.getInstance().getTotal()
-            );
-            purchase.save();
-            // send the purchase to any listening clients
-            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-// Add the buttons
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // User clicked OK button
-                    // SEND ARDUINO START
-                }
-            });
-            builder.setMessage("Make sure the lid is removed and put the cup in the holder.\nClick OK when ready");
-// Create the AlertDialog
-            AlertDialog dialog = builder.create();
+//            Purchase purchase = new Purchase(
+//                    (long)CurrentSelection.getInstance().getCurrentSmoothie(),
+//                    (long)CurrentSelection.getInstance().getCurrentLiquid(),
+//                    (long)CurrentSelection.getInstance().getCurrentSupplement(),
+//                    false,
+//                    CurrentSelection.getInstance().getTotal()
+//            );
+//            purchase.save();
+//            // send the purchase to any listening clients
+//            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+//// Add the buttons
+//            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int id) {
+//                    // User clicked OK button
+//                    // SEND ARDUINO START
+//                }
+//            });
+//            builder.setMessage("Make sure the lid is removed and put the cup in the holder.\nClick OK when ready");
+//// Create the AlertDialog
+//            AlertDialog dialog = builder.create();
         }
     };
 
@@ -385,6 +406,9 @@ public class PurchaseSmoothie extends AppCompatActivity {
 
     public void paymentRequest() {
         // connect to the server
+        View paymentInProgressView = (View)findViewById(R.id.paymentInProgress);
+        paymentInProgressView.setVisibility(View.VISIBLE);
+
         new connectTask().execute("");
 
     }
@@ -411,6 +435,10 @@ public class PurchaseSmoothie extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
+
+            View paymentInProgressView = (View)findViewById(R.id.paymentInProgress);
+            paymentInProgressView.setVisibility(View.INVISIBLE);
+
             String[] parsedMessage = values[0].split("\\^");
 
             for (int i = 0; i < parsedMessage.length; i = i + 2) {

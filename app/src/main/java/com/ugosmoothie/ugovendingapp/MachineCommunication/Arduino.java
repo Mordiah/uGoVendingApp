@@ -46,6 +46,11 @@ public class Arduino {
 
     public Arduino(Activity activity) {
         this.activity = activity;
+
+        mUsbManager = (UsbManager) activity.getSystemService(Context.USB_SERVICE);
+        RefreshDeviceList();
+
+
     }
 
     private final SerialInputOutputManager.Listener mListener =
@@ -202,7 +207,7 @@ public class Arduino {
 
             try {
                 sPort.open(connection);
-                sPort.setParameters(9600, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
+                sPort.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
             } catch (IOException e) {
                 //mTitleTextView.setText("Error opening device: " + e.getMessage());
                 try {
@@ -253,6 +258,10 @@ public class Arduino {
     }
 
     private void WriteMessageToArduino(short message_id, byte[] message, short length) {
+        if (sPort == null) {
+            RefreshDeviceList();
+        }
+
         byte toSend[];
         toSend = new byte[MinimumPacketSize + message.length];
 

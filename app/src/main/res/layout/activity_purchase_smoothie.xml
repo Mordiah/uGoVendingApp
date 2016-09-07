@@ -54,6 +54,24 @@
         android:visibility="invisible"
         android:layout_margin="0dp"
         android:layout_gravity="center" />
+
+    <include
+        android:id="@+id/paymentInProgress"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        layout="@layout/payment_in_progress"
+        android:visibility="invisible"
+        android:layout_margin="0dp"
+        android:layout_gravity="center" />
+
+    <include
+        android:id="@+id/callMaintenance"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        layout="@layout/call_maintenance"
+        android:visibility="invisible"
+        android:layout_margin="0dp"
+        android:layout_gravity="center" />
 </RelativeLayout>
 
 
