@@ -8,11 +8,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.payments.core.AndroidTerminal;
+import com.payments.core.CoreSale;
 import com.ugosmoothie.ugovendingapp.Data.CurrentSelection;
 import com.ugosmoothie.ugovendingapp.Data.Purchase;
 import com.ugosmoothie.ugovendingapp.PurchaseSmoothie;
 import com.ugosmoothie.ugovendingapp.R;
 import com.ugosmoothie.ugovendingapp.WebServer.AsyncServer;
+
+import java.math.BigDecimal;
 
 /**
  * Created by Michelle on 3/18/2016.
@@ -21,25 +25,18 @@ public class PaymentFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.payment_view, container, false);
 
-        Button button = (Button) rootView.findViewById(R.id.emulatePaymentbutton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                completeTransaction();
-            }
-        });
 
-        return rootView;
+               //completeTransaction();
+        return null;
     }
 
     public void completeTransaction() {
-        // save the purchase to the database
+       /* // save the purchase to the database
         Purchase purchase = new Purchase(
-                CurrentSelection.getInstance().getCurrentSmoothie().getId(),
-                CurrentSelection.getInstance().getCurrentLiquid().getId(),
-                CurrentSelection.getInstance().getCurrentSupplement().getId(),
+                (long)CurrentSelection.getInstance().getCurrentSmoothie(),
+                (long)CurrentSelection.getInstance().getCurrentLiquid(),
+                (long)CurrentSelection.getInstance().getCurrentSupplement(),
                 false,
                 CurrentSelection.getInstance().getTotal()
                 );
@@ -47,7 +44,9 @@ public class PaymentFragment extends Fragment {
 
         // send the purchase to any listening clients
         AsyncServer.getInstance().SendMessage(purchase.toJSONObject());
+*/
 
-        ((PurchaseSmoothie) getActivity()).GetUGoViewPager().setCurrentItem(5);
+      //      ((PurchaseSmoothie) getActivity()).refresh();
+
     }
 }

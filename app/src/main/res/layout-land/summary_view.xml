@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/summary_screen"
+    android:weightSum="1"
+    android:orientation="horizontal">
+
+    <!--Layout: Purchase Details-->
+    <RelativeLayout
+        android:layout_width="1200dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:id="@+id/smoothie_tag"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/green_smoothie"
+            android:layout_gravity="bottom" />
+        <TextView
+            android:id="@+id/element_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recipe"
+            android:layout_alignParentStart="false"
+            android:textStyle="bold"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="70dp"
+            android:textSize="22sp"
+            android:layout_marginBottom="10dp" />
+        <TextView
+            android:id="@+id/element_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/element_2"
+            android:textStyle="bold"
+            android:layout_marginTop="70dp"
+            android:textSize="22sp"
+            android:layout_marginLeft="500dp" />
+        <TextView
+            android:id="@+id/element_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/element_3"
+            android:textStyle="bold"
+            android:layout_marginTop="70dp"
+            android:textSize="22sp"
+            android:layout_marginLeft="670dp" />
+        <TextView
+            android:id="@+id/element_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/element_4"
+            android:layout_alignParentEnd="false"
+            android:textStyle="bold"
+            android:layout_marginTop="70dp"
+            android:textSize="22sp"
+            android:layout_marginLeft="950dp" />
+        <!--recipe-->
+        <TextView
+            android:id="@+id/element_1_val"
+            android:layout_width="140dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/element_1_val"
+            android:textSize="18dp"
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="110dp"
+            android:gravity="center_vertical|center" />
+        <!--liquid-->
+        <TextView
+            android:id="@+id/element_2_val_3"
+            android:layout_width="140dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/element_2_val"
+            android:textSize="18dp"
+            android:layout_marginLeft="460dp"
+            android:layout_marginTop="110dp"
+            android:gravity="center_vertical|center" />
+        <!--sup-->
+        <TextView
+            android:id="@+id/element_3_val_3"
+            android:layout_width="135dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/element_3_val"
+            android:textSize="18dp"
+            android:layout_marginLeft="660dp"
+            android:layout_marginTop="110dp"
+            android:gravity="center_vertical|center" />
+        <!--total-->
+        <TextView
+            android:id="@+id/element_4_val_3"
+            android:layout_width="135dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/element_4_val"
+            android:textSize="18dp"
+            android:layout_marginLeft="910dp"
+            android:layout_marginTop="110dp"
+            android:gravity="center_vertical|center" />
+    </RelativeLayout>
+
+    <!--Header-->
+    <TextView
+        android:id="@+id/payment_instruction"
+        android:layout_width="550dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/payment_instruction"
+        android:layout_gravity="top"
+        android:textStyle="bold"
+        android:layout_marginLeft="-880dp"
+        android:layout_marginTop="150dp"
+        android:typeface="serif"
+        android:textSize="37sp"
+        android:gravity="center_horizontal" />
+
+    <!--Button: Language-->
+    <Button
+        android:background="@color/transparent"
+        android:id="@+id/lingual_tag"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="@string/lingual"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="155dp"
+        android:layout_gravity="right|top"
+        android:textSize="25sp"
+        android:clickable="true" />
+
+    <!--Button: Previous-->
+    <Button
+        android:id="@+id/previous_tag"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="left|top"
+        android:layout_marginLeft="-1070dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/transparent"
+        android:textSize="10sp"
+        android:clickable="true" />
+
+    <!--Button: Refresh-->
+    <Button
+        android:id="@+id/refresh_tag"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="left|top"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/transparent"
+        android:clickable="true" />
+
+    <!--Confirm Order-->
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="620dp"
+        android:background="@drawable/buttonshape"
+        android:alpha="0.9"
+        android:text="@string/confirm_order"
+        android:id="@+id/confirm_tag" />
+</LinearLayout>
