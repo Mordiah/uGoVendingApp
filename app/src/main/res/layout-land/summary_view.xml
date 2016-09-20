@@ -132,7 +132,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:text="@string/lingual"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="155dp"
         android:layout_gravity="right|top"
         android:textSize="25sp"
@@ -154,23 +154,24 @@
     <!--Button: Refresh-->
     <Button
         android:id="@+id/refresh_tag"
+        android:background="#00ffffff"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="left|top"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/transparent"
+        android:layout_marginTop="-25dp"
         android:clickable="true" />
 
     <!--Confirm Order-->
     <Button
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="300dp"
+        android:layout_width="500dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="620dp"
-        android:background="@drawable/buttonshape"
+        android:background="@color/white"
         android:alpha="0.9"
         android:text="@string/confirm_order"
+        android:textSize="50sp"
         android:id="@+id/confirm_tag" />
 </LinearLayout>
