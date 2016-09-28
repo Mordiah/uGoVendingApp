@@ -122,9 +122,15 @@ public class MachineTestingFragment extends Fragment {
 
     private void writeMessage(String message) {
         Log.v(TAG, message);
-        loggerTextView.append(message);
-        loggerTextView.append("\n");
-        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+        final String msg = message;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                loggerTextView.append(msg);
+                loggerTextView.append("\n");
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
     }
 
     private void SendAutoCycleMessage() {
